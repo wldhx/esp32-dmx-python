@@ -28,26 +28,6 @@ async def main():
     flood_g = universe.add_channel(20, width=1)
     flood_b = universe.add_channeol(21, width=1)
 
-    ## Simple fades
-
-    flood_master.add_fade([255], 0)
-    await flood_master.wait_till_fade_complete()
-
-    flood_r.add_fade([255], 1000)
-    await flood_r.wait_till_fade_complete()
-
-    ## Concurrent fades
-
-    flood_r.add_fade([0], 2500)
-    flood_g.add_fade([255], 1000)
-    flood_b.add_fade([255], 5000)
-
-    await asyncio.gather(
-        flood_r.wait_till_fade_complete(),
-        flood_g.wait_till_fade_complete(),
-        flood_b.wait_till_fade_complete(),
-    )
-
     ## More concurrent fades
                
     def reset():
