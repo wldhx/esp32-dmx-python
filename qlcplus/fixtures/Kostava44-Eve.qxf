@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FixtureDefinition>
+<FixtureDefinition xmlns="http://www.qlcplus.org/FixtureDefinition">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>4.12.3</Version>
+  <Author></Author>
+ </Creator>
+ <Manufacturer>Kostava44</Manufacturer>
+ <Model>Eve</Model>
+ <Type>Moving Head</Type>
+ <Channel Name="Pan" Preset="PositionPan"/>
+ <Channel Name="Tilt" Preset="PositionTilt"/>
+ <Channel Name="Red" Preset="IntensityRed"/>
+ <Channel Name="Green" Preset="IntensityGreen"/>
+ <Channel Name="Blue" Preset="IntensityBlue"/>
+ <Channel Name="White" Preset="IntensityWhite"/>
+ <Channel Name="Master dimmer" Preset="IntensityMasterDimmer"/>
+ <Channel Name="Laser" Preset="IntensityLime"/>
+ <Channel Name="Strobe" Preset="ShutterStrobeSlowFast"/>
+ <Channel Name="unknown">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Channel Name="unknown2">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Channel Name="unknown3">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Channel Name="unknown4">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Channel Name="unknown5">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Channel Name="LaserStrobe" Preset="ShutterStrobeSlowFast"/>
+ <Channel Name="auto1">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Channel Name="auto2">
+  <Group Byte="0">Intensity</Group>
+ </Channel>
+ <Mode Name="17ch">
+  <Channel Number="0">Pan</Channel>
+  <Channel Number="1">unknown</Channel>
+  <Channel Number="2">Tilt</Channel>
+  <Channel Number="3">unknown2</Channel>
+  <Channel Number="4">unknown3</Channel>
+  <Channel Number="5">unknown4</Channel>
+  <Channel Number="6">unknown5</Channel>
+  <Channel Number="7">Master dimmer</Channel>
+  <Channel Number="8">Strobe</Channel>
+  <Channel Number="9">Red</Channel>
+  <Channel Number="10">Green</Channel>
+  <Channel Number="11">Blue</Channel>
+  <Channel Number="12">White</Channel>
+  <Channel Number="13">Laser</Channel>
+  <Channel Number="14">LaserStrobe</Channel>
+  <Channel Number="15">auto1</Channel>
+  <Channel Number="16">auto2</Channel>
+ </Mode>
+ <Physical>
+  <Bulb Type="" Lumens="0" ColourTemperature="0"/>
+  <Dimensions Weight="0" Width="0" Height="0" Depth="0"/>
+  <Lens Name="Other" DegreesMin="0" DegreesMax="0"/>
+  <Focus Type="Fixed" PanMax="0" TiltMax="0"/>
+  <Technical PowerConsumption="0" DmxConnector="5-pin"/>
+ </Physical>
+</FixtureDefinition>
