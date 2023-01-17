@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Workspace>
-<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FixtureManager">
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FunctionManager">
  <Creator>
   <Name>Q Light Controller Plus</Name>
   <Version>4.12.3</Version>
@@ -35,6 +35,51 @@
    <Address>17</Address>
    <Channels>4</Channels>
   </Fixture>
+  <Function ID="0" Type="EFX" Name="Eve Circle">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="30000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>100</Width>
+   <Height>30</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>127</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="2" Type="Chaser" Name="Eve Red-Yellow">
+   <Speed FadeIn="5000" FadeOut="5000" Duration="6000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="Common" FadeOut="Common" Duration="Common"/>
+   <Step Number="0" FadeIn="500" Hold="0" FadeOut="0">3</Step>
+   <Step Number="1" FadeIn="0" Hold="0" FadeOut="0">4</Step>
+  </Function>
+  <Function ID="3" Type="Scene" Name="Eve Red">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">9,255,10,0</FixtureVal>
+  </Function>
+  <Function ID="4" Type="Scene" Name="Eve Yellow">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">9,255,10,124</FixtureVal>
+  </Function>
  </Engine>
  <VirtualConsole>
   <Frame Caption="">
@@ -45,6 +90,32 @@
     <BackgroundImage>None</BackgroundImage>
     <Font>Default</Font>
    </Appearance>
+   <Button Caption="Eve Red-Yellow" ID="0" Icon="">
+    <WindowState Visible="False" X="0" Y="0" Width="50" Height="50"/>
+    <Appearance>
+     <FrameStyle>None</FrameStyle>
+     <ForegroundColor>Default</ForegroundColor>
+     <BackgroundColor>Default</BackgroundColor>
+     <BackgroundImage>None</BackgroundImage>
+     <Font>Default</Font>
+    </Appearance>
+    <Function ID="2"/>
+    <Action>Toggle</Action>
+    <Intensity Adjust="False">100</Intensity>
+   </Button>
+   <Button Caption="Eve Circle" ID="1" Icon="">
+    <WindowState Visible="False" X="50" Y="0" Width="50" Height="50"/>
+    <Appearance>
+     <FrameStyle>None</FrameStyle>
+     <ForegroundColor>Default</ForegroundColor>
+     <BackgroundColor>Default</BackgroundColor>
+     <BackgroundImage>None</BackgroundImage>
+     <Font>Default</Font>
+    </Appearance>
+    <Function ID="0"/>
+    <Action>Toggle</Action>
+    <Intensity Adjust="False">100</Intensity>
+   </Button>
   </Frame>
   <Properties>
    <Size Width="1920" Height="1080"/>
