@@ -14,7 +14,7 @@ async def main():
     flood_master = universe.add_channel(18, width=1)
     flood_r = universe.add_channel(19, width=1)
     flood_g = universe.add_channel(20, width=1)
-    flood_b = universe.add_channeol(21, width=1)
+    flood_b = universe.add_channel(21, width=1)
 
     ## Simple fades
 

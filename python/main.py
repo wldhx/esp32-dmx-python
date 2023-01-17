@@ -26,10 +26,10 @@ async def main():
     flood_master = universe.add_channel(18, width=1)
     flood_r = universe.add_channel(19, width=1)
     flood_g = universe.add_channel(20, width=1)
-    flood_b = universe.add_channeol(21, width=1)
+    flood_b = universe.add_channel(21, width=1)
 
     ## More concurrent fades
-               
+
     def reset():
         flood_r.add_fade([0], 0)
         flood_g.add_fade([0], 0)
@@ -39,11 +39,15 @@ async def main():
 
     # you can inline reset()
 
-    await wait([flood_r, flood_g, flood_b],
-               lambda: (flood_r.add_fade([0], 0),
-                        flood_g.add_fade([0], 0),
-                        flood_b.add_fade([0], 0)))
-               
+    await wait(
+        [flood_r, flood_g, flood_b],
+        lambda: (
+            flood_r.add_fade([0], 0),
+            flood_g.add_fade([0], 0),
+            flood_b.add_fade([0], 0),
+        ),
+    )
+
     # TaskGroup showcase
 
     async with asyncio.TaskGroup() as tg:
