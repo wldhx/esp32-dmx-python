@@ -27,30 +27,30 @@ async def main():
         await wait(
             [eve.x, eve.y],
             lambda: (
-                eve.x.add_fade([20], 10000),  # kitchen door
-                eve.y.add_fade([30], 4000),
+                eve.x.add_fade([15], 20000),  # kitchen door
+                eve.y.add_fade([15], 20000),
             ),
         )
 
         await wait(
             [eve.x, eve.y],
             lambda: (
-                eve.x.add_fade([70], 10000),  # entrance door
-                eve.y.add_fade([45], 4000),
+                eve.x.add_fade([70], 20000),  # entrance door
+                eve.y.add_fade([45], 20000),
             ),
         )
 
         await wait(
             [eve.x, eve.y],
             lambda: (
-                eve.x.add_fade([170], 10000),  # 360 turn
-                eve.y.add_fade([90], 4000),
+                eve.x.add_fade([170], 20000),  # 360 turn
+                eve.y.add_fade([122], 20000),
             ),
         )
 
     async def yellow_pulse(obj):
-        await fade(obj.g, [40], 10000)
-        await fade(obj.g, [0], 10000)
+        await fade(obj.g, [40], 30000)
+        await fade(obj.g, [0], 30000)
 
     while True:
         await asyncio.gather(eve_cover_doors(), yellow_pulse(eve), yellow_pulse(flood))
