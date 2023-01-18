@@ -1,17 +1,6 @@
 import asyncio
 from pyartnet import ArtNetNode
-
-
-async def fade(ch, *args):
-    """Add fade and wait until it completes."""
-    ch.add_fade(*args)
-    await ch.wait_till_fade_complete()
-
-
-async def wait(chs, f):
-    """Execute fades and wait until all fades for given channels complete."""
-    f()
-    asyncio.gather(*[ch.wait_till_fade_complete() for ch in chs])
+from common import *
 
 
 async def main():
