@@ -2,6 +2,8 @@ import asyncio
 from pyartnet import ArtNetNode
 from common import *
 
+MULTIPLIER = 5000
+
 
 async def main():
     node = ArtNetNode("192.168.31.255", broadcast=True)
@@ -20,40 +22,40 @@ async def main():
     await fade(flood.r, [255], 0)
 
     async def circle():
-        await fade(eve.x, [255], 20000)
-        await fade(eve.x, [0], 20000)
+        await fade(eve.x, [255], MULTIPLIER * 4)
+        await fade(eve.x, [0], MULTIPLIER * 4)
 
-    async def eve_cover_doors():
-        await wait(
-            [eve.x, eve.y],
-            lambda: (
-                eve.x.add_fade([15], 20000),  # kitchen door
-                eve.y.add_fade([15], 20000),
-            ),
-        )
+    async def eve_x():
+        seq = [
+            (eve.x, [10], MULTIPLIER),  # to kitchen door
+            (eve.x, [15], MULTIPLIER * 2),  # kitchen door
+            (eve.x, [20], MULTIPLIER),  # kitchen door
+            (eve.x, [65], MULTIPLIER * 2),  # to entrance door
+            (eve.x, [70], MULTIPLIER * 2),  # entrance door
+            (eve.x, [170], MULTIPLIER * 4),  # 360 turn
+        ]
 
-        await wait(
-            [eve.x, eve.y],
-            lambda: (
-                eve.x.add_fade([70], 20000),  # entrance door
-                eve.y.add_fade([45], 20000),
-            ),
-        )
+        [await fade(*x) for x in seq]
+        # [await fade(*x) for x in seq[::-1]]
 
-        await wait(
-            [eve.x, eve.y],
-            lambda: (
-                eve.x.add_fade([170], 20000),  # 360 turn
-                eve.y.add_fade([122], 20000),
-            ),
-        )
+    async def eve_y():
+        seq = [
+            (eve.y, [15], MULTIPLIER * 4),  # kitchen door
+            (eve.y, [120], MULTIPLIER),  # transition
+            (eve.y, [30], MULTIPLIER),  # to entrance door
+            (eve.y, [55], MULTIPLIER * 2),  # entrance door
+            (eve.y, [140], MULTIPLIER * 4),  # 360 turn
+        ]
+
+        [await fade(*x) for x in seq]
+        # [await fade(*x) for x in seq[::-1]]
 
     async def yellow_pulse(obj):
-        await fade(obj.g, [40], 30000)
-        await fade(obj.g, [0], 30000)
+        await fade(obj.g, [40], MULTIPLIER * 6)
+        await fade(obj.g, [0], MULTIPLIER * 6)
 
     while True:
-        await asyncio.gather(eve_cover_doors(), yellow_pulse(eve), yellow_pulse(flood))
+        await asyncio.gather(eve_x(), eve_y(), yellow_pulse(eve), yellow_pulse(flood))
 
 
 asyncio.run(main())
