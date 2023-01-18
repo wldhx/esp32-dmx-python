@@ -1,21 +1,21 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/22.11";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs }:
-    let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
-    in
-    with pkgs; {
-      devShell.x86_64-linux = mkShell {
-        buildInputs = [
-	  python311
-	  black
-	  poetry
-        ];
-      };
-    };
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      with pkgs; {
+        devShell = mkShell {
+          buildInputs = [
+            python311
+            black
+            poetry
+          ];
+        };
+      });
 }
