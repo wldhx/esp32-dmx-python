@@ -51,8 +51,8 @@ async def main():
         # [await fade(*x) for x in seq[::-1]]
 
     async def yellow_pulse(obj):
-        await fade(obj.g, [40], MULTIPLIER * 6)
-        await fade(obj.g, [0], MULTIPLIER * 6)
+        await fade(obj.g, [10], MULTIPLIER * 20)
+        await fade(obj.g, [0], MULTIPLIER * 20)
 
     while True:
         await asyncio.gather(eve_x(), eve_y(), yellow_pulse(eve), yellow_pulse(flood))
