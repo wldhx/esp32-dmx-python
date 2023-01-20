@@ -25,6 +25,7 @@ async def main():
         await fade(eve.x, [255], MULTIPLIER * 4)
         await fade(eve.x, [0], MULTIPLIER * 4)
 
+    @forever
     async def eve_x():
         seq = [
             (eve.x, [10], MULTIPLIER),  # to kitchen door
@@ -38,6 +39,7 @@ async def main():
         [await fade(*x) for x in seq]
         # [await fade(*x) for x in seq[::-1]]
 
+    @forever
     async def eve_y():
         seq = [
             (eve.y, [15], MULTIPLIER * 4),  # kitchen door
@@ -50,12 +52,14 @@ async def main():
         [await fade(*x) for x in seq]
         # [await fade(*x) for x in seq[::-1]]
 
+    @forever
     async def yellow_pulse(obj):
-        await fade(obj.g, [10], MULTIPLIER * 20)
-        await fade(obj.g, [0], MULTIPLIER * 20)
+        await fade(obj.g, [20], MULTIPLIER)
+        await sleep(MULTIPLIER * 2)
+        await fade(obj.g, [0], MULTIPLIER)
+        await sleep(MULTIPLIER * 2)
 
-    while True:
-        await asyncio.gather(eve_x(), eve_y(), yellow_pulse(eve), yellow_pulse(flood))
+    await asyncio.gather(eve_x(), eve_y(), yellow_pulse(eve), yellow_pulse(flood))
 
 
 asyncio.run(main())
