@@ -1,7 +1,8 @@
 import asyncio
 from pyartnet import ArtNetNode
 import random
-from common import *
+from fixtures import Eve
+from utils import *
 
 
 async def main():

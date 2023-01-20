@@ -1,6 +1,3 @@
-import asyncio
-
-
 class Flood:
     def __init__(self, universe, start: int):
         self.master = universe.add_channel(start, width=1)
@@ -21,28 +18,3 @@ class Eve:
         self.w = universe.add_channel(start + 12, width=1)
         self.laser = universe.add_channel(start + 13, width=1)
         self.laser_strobe = universe.add_channel(start + 14, width=1)
-
-
-async def fade(ch, *args):
-    """Add fade and wait until it completes."""
-    ch.add_fade(*args)
-    await ch.wait_till_fade_complete()
-
-
-async def wait(chs, f):
-    """Execute fades and wait until all fades for given channels complete."""
-    f()
-    await asyncio.gather(*[ch.wait_till_fade_complete() for ch in chs])
-
-
-async def sleep(delay, *args):
-    """Block for delay milliseconds."""
-    return await asyncio.sleep(delay / 1000, *args)
-
-
-def forever(f):
-    async def go(*args, **kwargs):
-        while True:
-            await f(*args, **kwargs)
-
-    return go
