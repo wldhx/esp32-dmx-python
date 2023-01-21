@@ -18,6 +18,18 @@ async def sleep(delay, *args):
     return await asyncio.sleep(delay / 1000, *args)
 
 
+async def race(*tasks):
+    """Return the result of the first task to finish. Cancel the remaining
+    tasks."""
+
+    result = None
+    for coro in asyncio.as_completed(tasks):
+        result = await coro
+        break
+
+    return result
+
+
 def forever(f):
     async def go(*args, **kwargs):
         while True:

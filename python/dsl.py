@@ -47,6 +47,14 @@ class WaitAll(Op):
 
 
 @dataclass(frozen=True)
+class WaitAny(Op):
+    ops: Tuple[Op]  # XXX: consider taking ops as *args
+
+    def __await__(self):
+        yield from race(*self.ops).__await__()
+
+
+@dataclass(frozen=True)
 class Seq(Op):
     ops: Tuple[Op]
 
