@@ -35,8 +35,8 @@ async def main():
                     Seq(
                         (
                             Fade(eve.x, (10,), MULTIPLIER),  # to kitchen door
-                            Fade(eve.x, (15,), MULTIPLIER * 2),  # kitchen door
-                            Fade(eve.x, (20,), MULTIPLIER),  # kitchen door
+                            Fade(eve.x, (20,), MULTIPLIER * 2),  # kitchen door
+                            Sleep(MULTIPLIER),
                         )
                     ),
                     Fade(eve.y, (15,), MULTIPLIER * 4),  # kitchen door
@@ -56,7 +56,12 @@ async def main():
             WaitAll(
                 (
                     Fade(eve.x, (70,), MULTIPLIER * 2),  # entrance door
-                    Fade(eve.y, (55,), MULTIPLIER * 2),  # entrance door
+                    Seq(
+                        (
+                            Fade(eve.y, (55,), MULTIPLIER),  # entrance door
+                            Sleep(MULTIPLIER),
+                        )
+                    ),
                 )
             ),
             WaitAll(
