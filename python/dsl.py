@@ -22,7 +22,7 @@ class Sleep(Op):
 @dataclass(frozen=True)
 class Fade(Op):
     ch: Any
-    target_values: Any
+    target_values: Tuple[int]
     duration_ms: int
 
     def __await__(self):
@@ -31,7 +31,7 @@ class Fade(Op):
 
 @dataclass(frozen=True)
 class WaitAll(Op):
-    ops: List[Any]  # XXX: consider taking ops as *args
+    ops: Tuple[Op]  # XXX: consider taking ops as *args
 
     def __await__(self):
         # XXX
@@ -44,6 +44,15 @@ class WaitAll(Op):
             coros.append(coro())
 
         yield from asyncio.gather(*coros).__await__()
+
+
+@dataclass(frozen=True)
+class Seq(Op):
+    ops: Tuple[Op]
+
+    def __await__(self):
+        for op in self.ops:
+            yield from op.__await__()
 
 
 @dataclass(frozen=True)

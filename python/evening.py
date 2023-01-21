@@ -29,30 +29,26 @@ async def main():
 
     @forever
     async def eve_x():
-        seq = [
-            Fade(eve.x, [10], MULTIPLIER),  # to kitchen door
-            Fade(eve.x, [15], MULTIPLIER * 2),  # kitchen door
-            Fade(eve.x, [20], MULTIPLIER),  # kitchen door
-            Fade(eve.x, [65], MULTIPLIER * 2),  # to entrance door
-            Fade(eve.x, [70], MULTIPLIER * 2),  # entrance door
-            Fade(eve.x, [170], MULTIPLIER * 4),  # 360 turn
-        ]
-
-        [await x for x in seq]
-        [await x for x in seq[::-1]]
+        seq = (
+            Fade(eve.x, (10,), MULTIPLIER),  # to kitchen door
+            Fade(eve.x, (15,), MULTIPLIER * 2),  # kitchen door
+            Fade(eve.x, (20,), MULTIPLIER),  # kitchen door
+            Fade(eve.x, (65,), MULTIPLIER * 2),  # to entrance door
+            Fade(eve.x, (70,), MULTIPLIER * 2),  # entrance door
+            Fade(eve.x, (170,), MULTIPLIER * 4),  # 360 turn
+        )
+        await Seq(seq + seq[::-1])
 
     @forever
     async def eve_y():
-        seq = [
-            Fade(eve.y, [15], MULTIPLIER * 4),  # kitchen door
-            Fade(eve.y, [120], MULTIPLIER),  # transition
-            Fade(eve.y, [30], MULTIPLIER),  # to entrance door
-            Fade(eve.y, [55], MULTIPLIER * 2),  # entrance door
-            Fade(eve.y, [140], MULTIPLIER * 4),  # 360 turn
-        ]
-
-        [await x for x in seq]
-        [await x for x in seq[::-1]]
+        seq = (
+            Fade(eve.y, (15,), MULTIPLIER * 4),  # kitchen door
+            Fade(eve.y, (120,), MULTIPLIER),  # transition
+            Fade(eve.y, (30,), MULTIPLIER),  # to entrance door
+            Fade(eve.y, (55,), MULTIPLIER * 2),  # entrance door
+            Fade(eve.y, (140,), MULTIPLIER * 4),  # 360 turn
+        )
+        await Seq(seq + seq[::-1])
 
     @forever
     async def yellow_pulse(obj):
