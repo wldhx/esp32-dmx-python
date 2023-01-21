@@ -34,16 +34,7 @@ class WaitAll(Op):
     ops: Tuple[Op]  # XXX: consider taking ops as *args
 
     def __await__(self):
-        # XXX
-        coros = []
-        for op in self.ops:
-
-            async def coro():
-                await op
-
-            coros.append(coro())
-
-        yield from asyncio.gather(*coros).__await__()
+        yield from asyncio.gather(*self.ops).__await__()
 
 
 @dataclass(frozen=True)
