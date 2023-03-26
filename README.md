@@ -2,6 +2,6 @@
 
 1. Upload the sketch in `esp32` to your ESP. Connect an XLR 3-pin to your ESP's GND, TX, and RX pins.
 2. Test with QLC+
-3. Play with Python code in `python`
+3. Play with Python code in `python`: `cd python/ && poetry install && poetry run python3 f0-demo.py`
 
 ![](/flood.jpg)
